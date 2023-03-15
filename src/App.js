@@ -1,18 +1,27 @@
-import {Input} from "./components/Input";
+import {useState} from "react";
+import Signin from "./components/Signin/Signin";
+import Signup from "./components/Signup/Signup";
+import './app.css';
 
 function App() {
+    const [showSignUpForm, setShowSignUpForm] = useState(false);
 
-  return (
-    <div className="App" style={{padding: 10}}>
-      <Input
-        label={'Full name'}
-        value={''}
-        placeholder={'Your name'}
-        description={'Please enter your full name'}
-        disabled
-      />
-    </div>
-  );
+    const handleSubmit = (e) => {
+        console.log('Form values: ', e);
+    };
+
+    const toggleForm = () => {
+        setShowSignUpForm(prev => !prev);
+    };
+
+    return (
+        <div className="app">
+            {showSignUpForm
+                ? <Signup onSubmit={handleSubmit} onToggleForm={toggleForm} />
+                : <Signin onSubmit={handleSubmit} onToggleForm={toggleForm} />
+            }
+        </div>
+    );
 }
 
 export default App;
