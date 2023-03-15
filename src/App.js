@@ -9,6 +9,7 @@ function App() {
     const handleSubmit = (e) => {
         console.log('Form values: ', e);
     };
+
     const toggleForm = () => {
         setShowSignUpForm(prev => !prev);
     };

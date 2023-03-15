@@ -1,5 +1,4 @@
 import './input.css';
-import {useMemo} from "react";
 
 const Sizes = {
     XS: 12,
@@ -62,6 +61,7 @@ const Input = (props) => {
                     placeholder={placeholder}
                     disabled={disabled}
                     onChange={onChange}
+                    data-required={required}
                     data-invalid={!!error}
                     data-icon={!!icon}
                     style={{

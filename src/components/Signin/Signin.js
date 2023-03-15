@@ -1,22 +1,20 @@
-import {useState} from "react";
+import {useRef} from "react";
 import Input from "../Input/Input";
-import {ReactComponent as EmailIcon} from '../../assets/emailIcon.svg'
 import './signin.css';
 
-
 const Signin = ({onSubmit, onToggleForm}) => {
-    const [formValues, setFormValues] = useState({});
+    const formValues = useRef({});
 
     const handleChange = ({target}) => {
-        setFormValues(prev => ({
-            ...prev,
+        formValues.current = {
+            ...formValues.current,
             [target.name]: target.value
-        }));
+        };
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formValues)
+        onSubmit(formValues.current)
     };
 
     return (
@@ -34,7 +32,6 @@ const Signin = ({onSubmit, onToggleForm}) => {
                     name={'email'}
                     label={'Email'}
                     placeholder={'Your email'}
-                    icon={EmailIcon}
                     required
                 />
 

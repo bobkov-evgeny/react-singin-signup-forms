@@ -1,20 +1,23 @@
-import './signup.css';
+import {useRef} from "react";
 import Input from "../Input/Input";
-import {useState} from "react";
+import RadioGroup from "../Input/RadioGroup";
+import {ReactComponent as EmailIcon} from '../../assets/emailIcon.svg'
+import './signup.css';
 
 const Signup = ({onSubmit, onToggleForm}) => {
-    const [formValues, setFormValues] = useState({});
+    const formValues = useRef({});
 
     const handleChange = ({target}) => {
-        setFormValues(prev => ({
-            ...prev,
+        formValues.current = {
+            ...formValues.current,
             [target.name]: target.value
-        }));
+        };
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formValues)
+
+        onSubmit(formValues.current);
     };
 
     return (
@@ -41,39 +44,22 @@ const Signup = ({onSubmit, onToggleForm}) => {
                     label={'Nickname'}
                     description={'Please provide your nickname'}
                     placeholder={'Your nickname'}
+                    icon={EmailIcon}
                     required
                 />
 
                 <Input
                     name={'email'}
-                    type={'email'}
                     label={'Email'}
                     description={'Please provide your email'}
                     placeholder={'Your email'}
+                    error={"Example error  message"}
                     required
                 />
 
-                <div>
-                    <span>Gender:</span>
-
-                    <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        value="male"
-                        defaultChecked={formValues.gender === 'male' || false}
-                    />
-                    <label htmlFor="male">male</label>
-
-                    <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        value="female"
-                        defaultChecked={formValues.gender === 'female' || false}
-                    />
-                    <label htmlFor="female">female</label>
-                </div>
+                <RadioGroup
+                    formValues={formValues}
+                />
 
                 <Input
                     name={'password'}
@@ -84,10 +70,11 @@ const Signup = ({onSubmit, onToggleForm}) => {
                 />
 
                 <Input
-                    name={'reRassword'}
+                    name={'repeatPassword'}
                     type={'password'}
                     label={'Repeat password'}
                     placeholder={'Your password'}
+                    description={'Passwords must match'}
                     required
                 />
 
