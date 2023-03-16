@@ -1,4 +1,3 @@
-import React, {ReactElement} from "react";
 import {FormValues} from "./Form.types";
 
 export enum ImportSizeTypes {
@@ -10,7 +9,7 @@ export enum ImportSizeTypes {
 }
 
 export interface IInputProps {
-    type?: string;
+    type?: 'text' | 'email' | 'password';
     name: string;
     label?: string;
     value?: string;
