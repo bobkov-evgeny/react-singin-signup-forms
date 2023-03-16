@@ -1,4 +1,7 @@
-const RadioGroup = ({formValues}) => {
+import React, {ReactElement} from "react";
+import {IRadioGroupProps} from "../../types/Input.types";
+
+const RadioGroup: React.FC<IRadioGroupProps> = ({formValues}): ReactElement => {
 
     return (
         <div className={'gender-select-container'}>
@@ -11,7 +14,7 @@ const RadioGroup = ({formValues}) => {
                         id="male"
                         name="gender"
                         value="male"
-                        defaultChecked={formValues.current.gender === 'male' || false}
+                        defaultChecked={formValues.gender === 'male' || false}
                     />
                     <label htmlFor="male">Male</label>
                 </div>
@@ -22,7 +25,7 @@ const RadioGroup = ({formValues}) => {
                         id="female"
                         name="gender"
                         value="female"
-                        defaultChecked={formValues.current.gender === 'female' || false}
+                        defaultChecked={formValues.gender === 'female' || false}
                     />
                     <label htmlFor="female">Female</label>
                 </div>
@@ -33,7 +36,7 @@ const RadioGroup = ({formValues}) => {
                         id="undefined"
                         name="gender"
                         value="undefined"
-                        defaultChecked={formValues.current.gender === 'undefined' || false}
+                        defaultChecked={formValues.gender === 'undefined' || false}
                     />
                     <label htmlFor="undefined">Prefer not to tell</label>
                 </div>

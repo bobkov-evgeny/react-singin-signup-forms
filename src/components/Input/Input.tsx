@@ -1,4 +1,6 @@
+import React, {ReactElement} from 'react';
 import './input.css';
+import {IInputProps, ImportSizeTypes} from "../../types/Input.types";
 
 const Sizes = {
     XS: 12,
@@ -15,24 +17,21 @@ const BorderRadius = {
     XL: '2em'
 };
 
-const Input = (props) => {
-    const {
-        type = 'text',
-        name = '',
-        label,
-        value,
-        placeholder,
-        description,
-        error,
-        radius = 'MD',
-        size = 'MD',
-        required,
-        disabled,
-        onChange,
-        icon
-    } = props;
-
-    const Icon = icon || null
+const Input: React.FC<IInputProps> = ({
+                                          type,
+                                          name,
+                                          label,
+                                          value,
+                                          placeholder,
+                                          description,
+                                          error,
+                                          radius = ImportSizeTypes.MD,
+                                          size = ImportSizeTypes.MD,
+                                          required,
+                                          disabled,
+                                          icon
+                                      }): ReactElement => {
+    const Icon = icon || null;
 
     return (
         <div className={'input-wrapper'} style={{fontSize: Sizes[size]}}>
@@ -47,7 +46,7 @@ const Input = (props) => {
             }
 
             <div className={'input-container'}>
-                {icon &&
+                {Icon &&
                     <div className={'icon-container'}>
                         <Icon height={'1em'} width={'1em'} />
                     </div>
@@ -60,7 +59,6 @@ const Input = (props) => {
                     value={value}
                     placeholder={placeholder}
                     disabled={disabled}
-                    onChange={onChange}
                     data-required={required}
                     data-invalid={!!error}
                     data-icon={!!icon}

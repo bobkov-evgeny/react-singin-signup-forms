@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "module": "es6",
+        "target": "ES5",
+        "jsx": "react",
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "lib": [
+            "DOM",
+            "ES6",
+            "ES2015",
+            "ES2016",
+            "ES2017",
+            "ES2015.promise"
+        ],
+        "allowJs": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "noImplicitReturns": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "paths": {
+            "assets/*": ["src/assets/*"]
+        }
+    },
+    "include": ["custom.d.ts", "**/*.ts", "**/*.tsx"],
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}

@@ -1,21 +1,24 @@
-import {useRef} from "react";
+import React, {useRef} from "react";
 import Input from "../Input/Input";
 import RadioGroup from "../Input/RadioGroup";
-import {ReactComponent as EmailIcon} from '../../assets/emailIcon.svg'
+import {FormValues, IFormComponentProps} from "../../types/Form.types";
+import { ReactComponent as EmailIcon } from '../../assets/emailIcon.svg'
 import './signup.css';
 
-const Signup = ({onSubmit, onToggleForm}) => {
-    const formValues = useRef({});
+const Signup: React.FC<IFormComponentProps> = ({onSubmit, onToggleForm}) => {
+    const formValues = useRef<FormValues>({});
 
-    const handleChange = ({target}) => {
+    const handleChange = ({target}: React.FormEvent<HTMLFormElement>): void => {
+        const inputEl = (target as HTMLInputElement);
+
         formValues.current = {
             ...formValues.current,
-            [target.name]: target.value
+            [inputEl.name]: inputEl.value
         };
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
 
         onSubmit(formValues.current);
     };
@@ -58,7 +61,7 @@ const Signup = ({onSubmit, onToggleForm}) => {
                 />
 
                 <RadioGroup
-                    formValues={formValues}
+                    formValues={formValues.current}
                 />
 
                 <Input

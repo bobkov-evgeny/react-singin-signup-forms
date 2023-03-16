@@ -1,20 +1,24 @@
-import {useRef} from "react";
+import React, {useRef} from "react";
 import Input from "../Input/Input";
 import './signin.css';
+import {FormValues, IFormComponentProps} from "../../types/Form.types";
 
-const Signin = ({onSubmit, onToggleForm}) => {
-    const formValues = useRef({});
+const Signin: React.FC<IFormComponentProps> = ({onSubmit, onToggleForm}) => {
+    const formValues = useRef<FormValues>({});
 
-    const handleChange = ({target}) => {
+    const handleChange = ({target}: React.FormEvent<HTMLFormElement>): void => {
+        const inputEl = (target as HTMLInputElement);
+
         formValues.current = {
             ...formValues.current,
-            [target.name]: target.value
+            [inputEl.name]: inputEl.value
         };
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(formValues.current)
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+
+        onSubmit(formValues.current);
     };
 
     return (
